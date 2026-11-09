@@ -23,15 +23,19 @@ const  Register=()=>{
 
   const onSubmit = async(data) => {
 
-   const imgFile={image:data.image[0]}
-   const res=await axiosPublic.post(img_hosting_api,imgFile,{
-    headers:{
-        'content-type':'multipart/form-data'
+   let imgUrl = "";
+
+if (data.image && data.image.length > 0) {
+  const imgFile = { image: data.image[0] };
+
+  const res = await axiosPublic.post(img_hosting_api, imgFile, {
+    headers: {
+      "content-type": "multipart/form-data"
     }
-   })
-   
-    const imgUrl=res.data.data.display_url
-   
+  });
+
+  imgUrl = res.data?.data?.display_url;
+}
 
    signUp(data.email,data.password)
    .then(res=>{
