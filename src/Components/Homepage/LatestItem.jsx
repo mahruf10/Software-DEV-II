@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const LatestItem = () => {
@@ -12,8 +13,8 @@ const LatestItem = () => {
     }
   });
 
-  const latestFour = properties
-    .sort((a, b) => new Date(b.postedAt) - new Date(a.postedAt))
+  const latestFour = [...properties]
+    .sort((a, b) => b._id - a._id)
     .slice(0, 4);
 
   return (
@@ -30,7 +31,13 @@ const LatestItem = () => {
             </p>
             <p className='absolute bottom-3 left-3 badge badge-outline text-xs sm:text-sm'>
               {item.agentName}
-            </p>          </div>
+            </p>
+            <div className="absolute bottom-3 right-2 card-actions">
+              <Link to={`/details/${item._id}`}>
+                <button className="btn btn-secondary btn-sm sm:btn-md">Details</button>
+              </Link>
+            </div>
+          </div>
         </div>
       )}
     </div>

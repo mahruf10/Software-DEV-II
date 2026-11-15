@@ -1,5 +1,6 @@
 import React from 'react';
 import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { Link } from 'react-router-dom';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 
@@ -8,12 +9,18 @@ const AllProperties = () => {
     const { data: property = [], isLoading } = useQuery({
         queryKey: ['property'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/property');
+            const res = await axiosPublic.get(`/property?verified=${true}`);
             return res.data;
         }
     });
 
-    if (isLoading) return <p>Loading...</p>;
+   if (isLoading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
+  }
 
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 py-8 max-w-7xl mx-auto'>
@@ -36,7 +43,13 @@ const AllProperties = () => {
                             <img className='w-7 h-7 rounded-full object-cover' src={item.agentImg} alt={item.agentName} />
                             {item.agentName}
                             {item.verified && <RiVerifiedBadgeFill className='text-blue-500' />}
-                        </small>                    </div>
+                        </small>
+                        <div className="card-actions justify-end mt-2">
+                            <Link to={`/details/${item._id}`}>
+                                <button className="btn btn-primary btn-sm sm:btn-md">Details</button>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
