@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div >
            <Slider></Slider>
-           <SectionTitle heading='latest item' subheading='buy our latest item'></SectionTitle>
+           <SectionTitle heading='latest item' subheading='buy our latest items'></SectionTitle>
            <LatestItem></LatestItem>
            <SectionTitle heading='reviews' subheading='put your review'></SectionTitle>
           <Reviews></Reviews>
