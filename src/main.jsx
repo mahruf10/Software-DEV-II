@@ -85,6 +85,25 @@ const router = createBrowserRouter([
         path:'myreview',
         element:<MyReviews></MyReviews>
       },
+      
+      //agent
+       {
+              path:'agentProfile',
+              element:<AgentProfile></AgentProfile>
+            },
+            {
+              path:'addProperties',
+              element:<AddProperty></AddProperty>
+            },{
+              path:'myAddedProperties',
+              element:<MyAddedProperties></MyAddedProperties>
+            },{
+              path:'mySoldProperties',
+              element:<MySoldProperties></MySoldProperties>
+            },{
+              path:'requestedProperties',
+              element:<OfferedProperties></OfferedProperties>
+            }
      
     ]
   },{
